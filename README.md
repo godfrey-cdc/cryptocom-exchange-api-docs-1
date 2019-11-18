@@ -34,14 +34,14 @@
     -   [Subscribe: new k-line data over a specified period](#sub-kline)
     -   [Request: last 200 trades in a specified market](#req-trade)
     -   [Subscribe: new trades in a specified market](#sub-trade)
-    -   [Subscribe: - order book for a particular market (Increamental update)](#order-book-inc)
+    -   [Subscribe: - order book for a particular market (Incremental update)](#order-book-inc)
     -   [Subscribe: - order book for a particular market (Full update)](#order-book-full)
 ---
 
 
 # <span id="Introduction">Introduction</span>
 
-Welcome to the [Exchange](https://crypto.com/exchange) API documentaiton for developers. Here you can find a a breakdown of the API endpoints and how to use them.
+Welcome to the [Exchange](https://crypto.com/exchange) API documentation for developers. Here you can find a breakdown of the API endpoints and how to use them.
 
 ---
 
@@ -68,9 +68,9 @@ You can optionally specify a whitelist of IP addresses when generating the API K
 
 ## <span id="req-sign">Request Signing</span>
 
-Some endpoints are only accessible by authenticated users. The authentication is based on a pair of API Key and SHA-256 of the HTTP request parameter along with the API Secret Key (and should never explicity include the API Secret Key in your request).
+Some endpoints are only accessible by authenticated users. The authentication is based on a pair of API Key and SHA-256 of the HTTP request parameter along with the API Secret Key (and should never explicitly include the API Secret Key in your request).
 
-The alogrithm for generating the SHA-256 signature is as follows:
+The algorithm for generating the SHA-256 signature is as follows:
     
 1. Sort the HTTP request parameter names in ascending order.
 
@@ -89,7 +89,7 @@ secret_key = qg7fPyVj43tvfWBX83pSB7s8ZajHD1ve
 sign=sha256("api_key" + "mZhlB7z8dDXXdL74uwoIoqAtPQSpY6Mk" + "time" + "1573789761928" + "qg7fPyVj43tvfWBX83pSB7s8ZajHD1ve")
 ```
 
-##  <span id="resp-code">Respons Status Code</span>
+##  <span id="resp-code">Response Status Code</span>
 
 **HTTP Error Code**
 
@@ -104,7 +104,7 @@ sign=sha256("api_key" + "mZhlB7z8dDXXdL74uwoIoqAtPQSpY6Mk" + "time" + "157378976
     | Market APIs | up to 6 requests for 2s | IP |
     | User APIs | up to 6 requests for 2s | `user_id` |
 
-- 499 Request rejected due to input validation error
+- 499 Request rejected due to an input validation error
 - 500 Internal Server Error
 
 Unless otherwise specified, all responses are a JSON object with the following fields. THe user can observe the `code` and `msg` fields for more detailed error information.
@@ -112,7 +112,7 @@ Unless otherwise specified, all responses are a JSON object with the following f
 ```js
 {
     code: 0, // zero means ok, non-zero means err
-    msg: "suc", // "suc" means succeesful, if code is non-zero then this contains the error message
+    msg: "suc", // "suc" means successful, if code is non-zero then this contains the error message
     data: ... // the response data, if any
 }
 ```
@@ -146,7 +146,7 @@ An overview of all the available API endpoints are listed as follows:
 
 | Group | Path | Method | Allowed Parameters | Description |
 |-------|------|--------|--------------------|-------------|
-| Market | `/v1/symbols` | `GET` | (null) | Lists all avaiable market symbols|
+| Market | `/v1/symbols` | `GET` | (null) | Lists all available market symbols|
 | Market | `/v1/tickers` | `GET` | (null) | Gets tickers in all available markets |
 | Market | `/v1/ticker` | `GET` | `symbol` | Gets ticker for a particular market | 
 | Market | `/v1/klines` | `GET` | `symbol`, `period` | Get k-line data over a specified period |
@@ -173,7 +173,7 @@ An overview of all the available API endpoints are listed as follows:
 | WS | `sub` | `market_${symbol}_kline_1min`<br>`market_${symbol}_kline_5min`<br>`market_${symbol}_kline_15min`<br>`market_${symbol}_kline_30min`<br>`market_${symbol}_kline_60min`<br>`market_${symbol}_kline_1day`<br>`market_${symbol}_kline_1week`<br>`market_${symbol}_kline_1month` | Subscribe new k-line data over a specified period
 | WS | `req` | `market_${symbol}_trade_ticker` | Request last 200 trades in a specified market
 | WS | `sub` | `market_${symbol}_trade_ticker` | Subscribe: new trades in a specified market
-| WS | `sub` | `market_${symbol}_depth_step[0-2]` | Subscribe: - order book for a particular market (Increamental update)
+| WS | `sub` | `market_${symbol}_depth_step[0-2]` | Subscribe: - order book for a particular market (Incremental update)
 | WS | `sub` | `market_${symbol}_depth_step[0-2]` | Subscribe: - order book for a particular market (Full update)
 
 ##  <span id="market-api">Market API</span>
@@ -569,8 +569,8 @@ An overview of all the available API endpoints are listed as follows:
 |price|	No|	Authorized unit price. If type=2 then no need for this parameter.|
 |symbol|	Yes|	Market symbol "ethbtc"|
 |fee_is_user_exchange_coin|	No|	 (Redundant fields are ignored) this parameter indicates whether to use the platform currency to pay the handling fee, 0 means no, 1 means yes. 0 when the exchange has the platform currency.|
-|api_key|	Yes|	api key|
-|time|	Yes|	time stamp|
+|api_key|	Yes|	API key|
+|time|	Yes|	Time stamp|
 |sign|	Yes|	sha256 signature|
 
 5. Response Content-Type: `application/json`
@@ -600,8 +600,8 @@ An overview of all the available API endpoints are listed as follows:
 |------------|--------|--------------------------------------|
 |order_id|	Yes|	Order ID|
 |symbol|	Yes|	Market symbol "ethbtc", See below for details|
-|api_key|	Yes|	api key|
-|time|	Yes|	time stamp|
+|api_key|	Yes|	API key|
+|time|	Yes|	Time stamp|
 |sign|	Yes|	sha256 signature|
 
 5. Response Content-Type: `application/json`
@@ -677,8 +677,8 @@ An overview of all the available API endpoints are listed as follows:
 |------------|--------|-----------------------------|
 |order_id|	Yes|	OrderID|
 |symbol|	Yes|	Market symbol "ethbtc". See below for details|
-|api_key|	Yes|	api key|
-|time|	Yes|	time stamp|
+|api_key|	Yes|	API key|
+|time|	Yes|	Time stamp|
 |sign|	Yes|	sha256 signature|
 
 5. Response Content-Type: `application/json`
@@ -701,8 +701,8 @@ An overview of all the available API endpoints are listed as follows:
 |POST Parameter|	Required|	Description|
 |------------|--------|-----------------------------|
 |symbol|	Yes|	Market symbol "ethbtc", See below for details|
-|api_key|	Yes|	api key|
-|time|	Yes|	time stamp|
+|api_key|	Yes|	API key|
+|time|	Yes|	Time stamp|
 |sign|	Yes|	sha256 signature|
 
 5. Response Content-Type: `application/json`
@@ -725,11 +725,11 @@ An overview of all the available API endpoints are listed as follows:
 
 |POST Parameter|	Required|	Description|
 |------------|--------|--------------------------------------|
-|symbo|l	Yes|	Market symbol "btcusdt", See below for details|
+|symbol|	Yes|	Market symbol "btcusdt", See below for details|
 |pageSize|	No|	Page size|
 |page|	No|	Page number|
-|api_key|	Yes|	api key|
-|time|	Yes|	time stamp|
+|api_key|	Yes|	API key|
+|time|	Yes|	Time stamp|
 |sign|	Yes|	sha256 signature|
 
 5. Response Content-Type: `application/json`
@@ -771,7 +771,7 @@ An overview of all the available API endpoints are listed as follows:
             // 2: FILLED, "Full deal"
             // 3: PART_FILLED, "Partial transaction"
             // 4: CANCELED, "Order cancelled"
-            // 5: PENDING_CANCEL, "Order will be cancalled"
+            // 5: PENDING_CANCEL, "Order will be cancelled"
             // 6. EXPIRED(, "Abnormal order"
             "status": 1
         },
@@ -803,7 +803,7 @@ An overview of all the available API endpoints are listed as follows:
 
 * Old interface /api/new_order (It still works, but not recommended.)
 
-* v2 version change: Remove the tradeList transaction record from the result to improve efficiency;If you need transaction information for a single order, you can still use `/v1/orders/show` to get it.
+* v2 version change: Remove the tradeList transaction record from the result to improve efficiency; if you need transaction information for a single order, you can still use `/v1/orders/show` to get it.
 
 
 ---
@@ -822,8 +822,8 @@ An overview of all the available API endpoints are listed as follows:
 |endDate|	No|	 (Added) End time, accurate to seconds "yyyy-MM-dd mm:hh:ss"|
 |pageSize|	No|	Page size|
 |page|	No|	Page number|
-|api_key|	Yes|	api key|
-|time|	Yes|	time stamp|
+|api_key|	Yes|	API key|
+|time|	Yes|	Time stamp|
 |sign|	Yes|	sha256 signature|
 
 5. Response Content-Type: `application/json`
@@ -907,8 +907,8 @@ An overview of all the available API endpoints are listed as follows:
 |endDate|	No|	(Added) End time, accurate to seconds "yyyy-MM-dd HH:mm:ss"|
 |pageSize|	No|	Page size|
 |page|	No|	Page number|
-|api_key|	Yes|	api key|
-|time|	Yes|	time stamp|
+|api_key|	Yes|	API key|
+|time|	Yes|	Time stamp|
 |sort|	No|	 1 gives reverse order|
 |sign|	Yes|	sha256 signature|
 
