@@ -107,7 +107,7 @@ sign=sha256("api_key" + "mZhlB7z8dDXXdL74uwoIoqAtPQSpY6Mk" + "time" + "157378976
 - 499 Request rejected due to an input validation error
 - 500 Internal Server Error
 
-Unless otherwise specified, all responses are a JSON object with the following fields. THe user can observe the `code` and `msg` fields for more detailed error information.
+Unless otherwise specified, all responses are a JSON object with the following fields. The user can observe the `code` and `msg` fields for more detailed error information.
 
 ```js
 {
@@ -513,8 +513,8 @@ An overview of all the available API endpoints are listed as follows:
 
 |POST Parameter|	Required|	Description|
 |--------|--------|--------|
-|api_key|	Yes|	api_key|
-|time|	Yes|	time stamp|
+|api_key|	Yes|	API key|
+|time|	Yes|	Time stamp|
 |sign|	Yes|	sha256 signature|
 
 5. Response Content-Type: `application/json`
